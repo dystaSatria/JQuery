@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Kalkulator Sederhana dengan jQuery</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+<div>
+    <input type="text" id="angka1">
+    <select id="operator">
+        <option value="tambah">+</option>
+        <option value="kurang">-</option>
+        <option value="kali">x</option>
+        <option value="bagi">/</option>
+    </select>
+    <input type="text" id="angka2">
+    <button class="hitung">Hitung</button>
+    <p>Hasil: <span id="hasil"></span></p>
+</div>
+
+<script>
+$(document).ready(function(){
+    $(".hitung").click(function(){
+        var angka1 = parseFloat($("#angka1").val());
+        var angka2 = parseFloat($("#angka2").val());
+        var operator = $("#operator").val();
+        var hasil = 0;
+
+        if(operator === "tambah"){
+            hasil = angka1 + angka2;
+        } else if(operator === "kurang"){
+            hasil = angka1 - angka2;
+        } else if(operator === "kali"){
+            hasil = angka1 * angka2;
+        } else if(operator === "bagi"){
+            if(angka2 === 0){
+                $("#hasil").text("Pembagian dengan nol tidak dapat dilakukan");
+                return;
+            } else {
+                hasil = angka1 / angka2;
+            }
+        }
+        $("#hasil").text(hasil);
+    });
+});
+</script>
+
+</body>
+</html>
